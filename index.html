@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressão Comandas</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <div id="tela-login" class="login-tela">
+    <form id="form-login" class="login-caixa">
+      <h1>Mão na Massa</h1>
+      <p class="login-sub">Comandas</p>
+      <input id="login-email" type="email" placeholder="E-mail" autocomplete="username" required>
+      <input id="login-senha" type="password" placeholder="Senha" autocomplete="current-password" required>
+      <button type="submit" id="login-entrar">Entrar</button>
+      <p id="login-erro" class="aviso-preencher"></p>
+    </form>
+  </div>
+
+<div class="layout">
+
+    <!-- PAINEL -->
+
+    
+    <!-- =========================
+         ABAS DE PEDIDOS
+    ========================= -->
+    
+    <div id="abas-pedidos" class="abas-pedidos">
+    
+        <div id="lista-abas-pedidos">
+            <!-- As abas serão criadas pelo JavaScript -->
+        </div>
+    
+        <button
+            type="button"
+            id="novo-pedido"
+            onclick="criarPedido()">
+            + Novo pedido
+        </button>
+
+        <button type="button" id="btn-fechados" class="btn-lateral">
+            Fechados / cancelados
+        </button>
+
+        <div class="conta">
+            <span id="conta-usuario"></span>
+            <span id="estado-salvar" class="estado-salvar"></span>
+            <label class="pc-impressora">
+                <input type="checkbox" id="pc-impressora">
+                Este PC imprime os pedidos
+            </label>
+            <button type="button" id="btn-sair" class="btn-lateral">Sair</button>
+        </div>
+</div>
+
+
+    <div class="container">
+
+      <h1>Mão na Massa</h1>
+
+      
+
+
+      <!-- CLIENTE -->
+      <div class="cliente-info">
+
+        <input
+          type="text"
+          id="cliente"
+          placeholder="Nome">
+
+        <div class="tipo-pedido">
+
+          <label>
+            <input
+              type="radio"
+              name="tipo"
+              value="retirada"
+              checked>
+            RETIRADA
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="tipo"
+              value="entrega">
+            ENTREGA
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="tipo"
+              value="mesa">
+            MESA
+          </label>
+
+        </div>
+
+
+      </div>
+
+      <!-- ENTREGA -->
+      <div id="entrega-info" class="hidden">
+
+        <select id="bairro">
+          <option value="">Bairro</option>
+        </select>
+
+      </div>
+
+      <!-- colar pedido -->
+      <div class="pedido-whatsapp">
+
+        <h2>Pedido Direto</h2>
+
+        <textarea
+          id="texto-whatsapp"
+          placeholder="Cole aqui"></textarea>
+
+        <button id="preencher-pedido">
+          Preencher Comanda
+        </button>
+
+        <p id="aviso-preencher" class="aviso-preencher"></p>
+
+      </div>
+
+
+       <div class="metodo-pagamento">
+
+          <label>
+            <input
+              type="radio"
+              name="metodoPagamento"
+              value="cartão"
+              checked>
+            CARTÃO
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="metodoPagamento"
+              value="pix">
+            PIX
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="metodoPagamento"
+              value="dinheiro">
+            DINHEIRO
+          </label>
+
+        </div>
+
+     
+      <div class="sabores">
+
+        <!-- CLÁSSICAS -->
+        <div class="grupo">
+
+          <div class="topo-grupo">
+
+            <h2>Clássicas</h2>
+
+          </div>
+
+          <div
+            class="lista-itens"
+            id="classicas">
+
+            <div class="item" data-preco="6" data-nome="carne" data-esfiha="1">
+              <label>Carne</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6"  data-nome="queijo" data-esfiha="1">
+              <label>Queijo</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6" data-nome="calabresa" data-esfiha="1">
+              <label>Calabresa</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6" data-nome="frango" data-esfiha="1">
+              <label>Frango</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6" data-nome="calabresa e cebola" data-esfiha="1">
+              <label>Calabresa e Cebola</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="grupo">
+
+          <div class="topo-grupo">
+
+            <h2>Premium</h2>
+
+          </div>
+
+          <div
+            class="lista-itens"
+            id="premium">
+
+            <div class="item" data-preco="6.5" data-nome="alho" data-esfiha="1">
+              <label>Alho</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6.5" data-nome="alho e bacon" data-esfiha="1">
+              <label>Alho e Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6.5" data-nome="bacon" data-esfiha="1">
+              <label>Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+            
+            
+            <div class="item" data-preco="6.5" data-nome="bacon e milho" data-esfiha="1">
+              <label>Bacon e Milho</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="6.5" data-nome="bacon e requeijao" data-esfiha="1">
+              <label>Bacon e Requeijão</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="6.5" data-nome="bacon e tomate" data-esfiha="1">
+                <label>Bacon e Tomate</label>
+                <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+              
+              
+              <div class="item" data-preco="6.5" data-nome="brocolis" data-esfiha="1">
+                <label>Brócolis e Queijo</label>
+                <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+              
+              <div class="item" data-preco="6.5" data-nome="brocolis e alho" data-esfiha="1">
+                <label>Brócolis e Alho</label>
+                <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="6.5" data-nome="brocolis e bacon" data-esfiha="1">
+                <label>Brócolis e Bacon</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              
+              <div class="item" data-preco="6.5" data-nome="calabresa e bacon" data-esfiha="1">
+                <label>Calabresa e Bacon</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+              
+              <div class="item" data-preco="6.5" data-nome="calabresa e cheddar" data-esfiha="1">
+                <label>Calabresa e Cheddar</label>
+                  <input
+                   type="number"
+                   class="qtd-item"
+                   min="0"
+                   value="0">
+                   </div>
+                   
+              <div class="item" data-preco="6.5"  data-nome="calabresa fatiada com queijo e cebola" data-esfiha="1">
+                     <label>Calabresa Fatiada com Queijo e Cebola</label>
+                     <input
+                       type="number"
+                       class="qtd-item"
+                       min="0"
+                       value="0">
+                   </div>
+            
+             <div class="item" data-preco="6.5" data-nome="calabresa e queijo" data-esfiha="1">
+                     <label>Calabresa e Queijo</label>
+                     <input
+                       type="number"
+                       class="qtd-item"
+                       min="0"
+                       value="0">
+                   </div>
+
+            <div class="item" data-preco="6.5"  data-nome="calabresa e requeijao" data-esfiha="1">
+                     <label>Calabresa e Requeijão</label>
+                     <input
+                       type="number"
+                       class="qtd-item"
+                       min="0"
+                       value="0">
+                   </div>
+
+           <div class="item" data-preco="6.5"  data-nome="calabresa e tomate" data-esfiha="1">
+                    <label>Calabresa e Tomate</label>
+                    <input
+                      type="number"
+                      class="qtd-item"
+                      min="0"
+                      value="0">
+                  </div>
+
+          <div class="item" data-preco="6.5"  data-nome="calabresa fatiada com queijo e oregano" data-esfiha="1">
+                   <label>Calabresa Fatiada com Queijo e Orégano</label>
+                   <input
+                     type="number"
+                     class="qtd-item"
+                     min="0"
+                     value="0">
+                 </div>
+
+          <div class="item" data-preco="6.5"  data-nome="carne e bacon" data-esfiha="1">
+                  <label>Carne e Bacon</label>
+                  <input
+                    type="number"
+                    class="qtd-item"
+                    min="0"
+                    value="0">
+                </div>
+
+          <div class="item" data-preco="6.5"  data-nome="carne e brocolis" data-esfiha="1">
+                 <label>Carne e Brócolis</label>
+                 <input
+                   type="number"
+                   class="qtd-item"
+                   min="0"
+                   value="0">
+               </div>
+
+          <div class="item" data-preco="6.5" data-nome="carne e cheddar" data-esfiha="1">
+                <label>Carne e Cheddar</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+          <div class="item" data-preco="6.5" data-nome="carne e milho" data-esfiha="1">
+               <label>Carne e Milho</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+          <div class="item" data-preco="6.5"  data-nome="carne e queijo" data-esfiha="1">
+               <label>Carne e Queijo</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+
+          <div class="item" data-preco="6.5"  data-nome="carne e requeijao" data-esfiha="1">
+               <label>Carne e Requeijão</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+          <div class="item" data-preco="6.5"  data-nome="carne e tomate" data-esfiha="1">
+               <label>Carne e Tomate</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+
+             <div class="item" data-preco="6.5"  data-nome="frango e bacon" data-esfiha="1">
+               <label>Frango e Bacon</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5"  data-nome="frango e brocolis" data-esfiha="1">
+               <label>Frango e Brócolis</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5"  data-nome="frango e calabresa" data-esfiha="1">
+               <label>Frango e Calabresa</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5"  data-nome="frango e cheddar" data-esfiha="1">
+               <label>Frango e Cheddar</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5"  data-nome="frango e milho" data-esfiha="1">
+               <label>Frango e Milho</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5" data-nome="frango e palmito" data-esfiha="1">
+               <label>Frango e Palmito</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5" data-nome="frango e queijo" data-esfiha="1">
+               <label>Frango e Queijo</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5" data-nome="frango e requeijao" data-esfiha="1">
+               <label>Frango e Requeijão</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+ 
+             <div class="item" data-preco="6.5" data-nome="frango e tomate" data-esfiha="1">
+               <label>Frango e Tomate</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+                </div>
+                
+                <div class="item" data-preco="6.5" data-nome="milho" data-esfiha="1">
+                  <label>Milho</label>
+                  <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+                </div>
+                
+                <div class="item" data-preco="6.5" data-nome="milho e requeijao" data-esfiha="1">
+                  <label>Milho e Requeijão</label>
+                  <input
+                    type="number"
+                    class="qtd-item"
+                    min="0"
+                    value="0">
+                  </div>
+                
+                  <div class="item" data-preco="6.5" data-nome="marguerita" data-esfiha="1">
+                    <label>Marguerita</label>
+                    <input
+                    type="number"
+                    class="qtd-item"
+                    min="0"
+                    value="0">
+                  </div>
+                  
+                  <div class="item" data-preco="6.5" data-nome="napolitana" data-esfiha="1">
+                      <label>Napolitana</label>
+                      <input
+                      type="number"
+                      class="qtd-item"
+                      min="0"
+                      value="0">
+                    </div>
+                    
+                    <div class="item" data-preco="6.5" data-nome="palmito" data-esfiha="1">
+                      <label>Palmito</label>
+                      <input
+                      type="number"
+                      class="qtd-item"
+                      min="0"
+                      value="0">
+                    </div>
+                    
+                    <div class="item" data-preco="6.5" data-nome="palmito e requeijao" data-esfiha="1">
+                      <label>Palmito e Requeijão</label>
+                      <input
+                        type="number"
+                        class="qtd-item"
+                        min="0"
+                        value="0">
+                      </div>
+                      
+                      <div class="item" data-preco="6.5" data-nome="palmito e cheddar" data-esfiha="1">
+                        <label>Palmito e Cheddar</label>
+                        <input
+                          type="number"
+                          class="qtd-item"
+                          min="0"
+                          value="0">
+                      </div>
+
+                  <div class="item" data-preco="6.5" data-nome="presunto e queijo" data-esfiha="1">
+                        <label>Presunto e Queijo</label>
+                        <input
+                          type="number"
+                          class="qtd-item"
+                          min="0"
+                          value="0">
+                      </div>
+
+                  <div class="item" data-preco="6.5" data-nome="queijo e cheddar" data-esfiha="1">
+                        <label>Queijo e Cheddar</label>
+                        <input
+                          type="number"
+                          class="qtd-item"
+                          min="0"
+                          value="0">
+                        </div>
+                        
+                        <div class="item" data-preco="6.5" data-nome="dois queijos" data-esfiha="1">
+                               <label>2 Queijos</label>
+                               <input
+                               type="number"
+                               class="qtd-item"
+                                min="0"
+                                value="0">
+                            </div>
+            
+                        <div class="item" data-preco="6.5" data-nome="tres queijos" data-esfiha="1">
+                          <label>3 Queijos</label>
+                          <input
+                            type="number"
+                            class="qtd-item"
+                            min="0"
+                            value="0">
+                        </div>
+            
+            
+                      </div>
+            
+                      </div>
+
+             
+               <!-- PREMIUM PLUSH --> 
+        <div class="grupo">
+
+          <div class="topo-grupo">
+
+            <h2>Premium Plush</h2>
+
+          </div>
+
+          <div
+            class="lista-itens"
+            id="premium-plush">
+
+             <div class="item" data-preco="7" data-nome="alho e requeijao" data-esfiha="1">
+              <label>Alho e Requeijão</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7" data-nome="alho e milho" data-esfiha="1">
+              <label>Alho e Milho</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7" data-nome="alho tomate e requeijao" data-esfiha="1">
+              <label>Alho Tomate e Requeijão</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7" data-nome="alho e tomate" data-esfiha="1">
+              <label>Alho Tomate</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+              
+              <div class="item" data-preco="7"  data-nome="atum" data-esfiha="1">
+                <label>Atum</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="atum e requeijao" data-esfiha="1">
+                <label>Atum e Requeijão</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="bacon e cheddar" data-esfiha="1">
+                <label>Bacon e Cheddar</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="brocolis e palmito" data-esfiha="1">
+                <label>Brócolis e Palmito</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="brocolis e milho" data-esfiha="1">
+                <label>Brócolis e Milho</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="brocolis requeijao e alho" data-esfiha="1">
+                <label>Brócolis Requeijão e Alho</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="brocolis requeijao e bacon" data-esfiha="1">
+                <label>Brócolis Requeijão e Bacon</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+              
+              <div class="item" data-preco="7"  data-nome="brocolis e requeijao" data-esfiha="1">
+                <label>Brócolis e Requeijão</label>
+                <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="7"  data-nome="brocolis alho e bacon" data-esfiha="1">
+                <label>Brócolis Alho e Bacon</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+              
+            <div class="item" data-preco="7" data-nome="calabresa queijo e bacon" data-esfiha="1">
+                <label>Calabresa com Queijo e Bacon</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="7" data-nome="calabresa queijo e requeijao" data-esfiha="1">
+                <label>Calabresa com Queijo e Requeijão</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+              
+             <div class="item" data-preco="7" data-nome="calabresa requeijao e bacon" data-esfiha="1">
+               <label>Calabresa com Requeijão e Bacon</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+
+             <div class="item" data-preco="7" data-nome="calabresa queijo e tomate" data-esfiha="1">
+               <label>Calabresa com Queijo e Tomate</label>
+               <input
+               type="number"
+               class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+
+             <div class="item" data-preco="7" data-nome="calabresa requeijao e tomate" data-esfiha="1">
+               <label>Calabresa com Requeijão e Tomate</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+                </div>
+                
+                <div class="item" data-preco="7" data-nome="calabresa cheddar e bacon" data-esfiha="1">
+               <label>Calabresa com Cheddar e Bacon</label>
+               <input
+                 type="number"
+                 class="qtd-item"
+                 min="0"
+                 value="0">
+             </div>
+
+            <div class="item" data-preco="7" data-nome="calabresa queijo e milho" data-esfiha="1">
+              <label>Calabresa com Queijo e Milho</label>
+              <input
+              type="number"
+              class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+            
+            <div class="item" data-preco="7" data-nome="calabresa requeijao e milho" data-esfiha="1">
+              <label>Calabresa com Requeijão e Milho</label>
+              <input
+              type="number"
+              class="qtd-item"
+              min="0"
+                value="0">
+              </div>
+              
+            <div class="item" data-preco="7" data-nome="calabresa tomate e bacon" data-esfiha="1">
+              <label>Calabresa com Tomate e Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne queijo e bacon" data-esfiha="1">
+              <label>Carne com Queijo e Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne queijo e milho" data-esfiha="1">
+              <label>Carne com Queijo e Milho</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne queijo e tomate" data-esfiha="1">
+              <label>Carne com Queijo e Tomate</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne requeijao e tomate" data-esfiha="1">
+              <label>Carne com Requeijão e Tomate</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne requeijao e milho" data-esfiha="1">
+              <label>Carne com Requeijão e Milho</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne requeijao e bacon" data-esfiha="1">
+              <label>Carne com Requeijão e Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne tomate e bacon" data-esfiha="1">
+              <label>Carne com Tomate e Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+             <div class="item" data-preco="7"  data-nome="carne requeijao e brocolis" data-esfiha="1">
+              <label>Carne com Requeijão e Brócolis</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="carne queijo e brocolis" data-esfiha="1">
+              <label>Carne com Queijo e Brócolis</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+              
+            <div class="item" data-preco="7"  data-nome="presunto queijo e milho" data-esfiha="1">
+                <label>Presunto com Queijo e Milho</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+                </div>
+                
+            <div class="item" data-preco="7"  data-nome="presunto queijo e tomate" data-esfiha="1">
+                  <label>Presunto com Queijo e Tomate</label>
+                  <input
+                    type="number"
+                    class="qtd-item"
+                    min="0"
+                    value="0">
+                </div>
+
+                <div class="item" data-preco="7"  data-nome="presunto queijo e palmito" data-esfiha="1">
+                  <label>Presunto com Queijo e Palmito</label>
+                  <input
+                    type="number"
+                    class="qtd-item"
+                    min="0"
+                    value="0">
+                </div>
+
+                <div class="item" data-preco="7"  data-nome="presunto queijo e requeijao" data-esfiha="1">
+                  <label>Presunto com Queijo e Requeijão</label>
+                  <input
+                    type="number"
+                    class="qtd-item"
+                    min="0"
+                    value="0">
+                </div>
+
+                <div class="item" data-preco="6.5" data-nome="palmito e milho" data-esfiha="1">
+                  <label>Palmito e Milho</label>
+                  <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+                  </div>
+                <div class="item" data-preco="6.5" data-nome="palmito requeijao e milho" data-esfiha="1">
+                  <label>Palmito Requeijão e Milho</label>
+                  <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+                  </div>           
+
+            <div class="item" data-preco="7" data-nome="frango queijo e bacon" data-esfiha="1">
+                    <label>Frango com Queijo e Bacon</label>
+                    <input
+                      type="number"
+                      class="qtd-item"
+                      min="0"
+                      value="0">
+                    </div>
+                    
+            <div class="item" data-preco="7" data-nome="frango requeijao e bacon" data-esfiha="1">
+                      <label>Frango com Requeijão e Bacon</label>
+                      <input
+                        type="number"
+                        class="qtd-item"
+                        min="0"
+                        value="0">
+                    </div>
+                    
+            <div class="item" data-preco="7" data-nome="frango queijo e milho" data-esfiha="1">
+              <label>Frango com Queijo e Milho</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+            
+            <div class="item" data-preco="7" data-nome="frango requeijao e milho" data-esfiha="1">
+              <label>Frango com Requeijão e Milho</label>
+              <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+            </div>
+            
+            <div class="item" data-preco="7" data-nome="frango queijo e palmito" data-esfiha="1">
+              <label>Frango com Queijo e Palmito</label>
+              <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+            </div>
+
+            <div class="item" data-preco="7" data-nome="frango requeijao e palmito" data-esfiha="1">
+              <label>Frango com Requeijão e Palmito</label>
+              <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+            </div>
+            
+            <div class="item" data-preco="7" data-nome="frango queijo e brocolis" data-esfiha="1">
+              <label>Frango com Queijo e Brócolis</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+          <div class="item" data-preco="7"  data-nome="frango requeijao e brocolis" data-esfiha="1">
+              <label>Frango com Requeijão e Brócolis</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+           
+            <div class="item" data-preco="7"  data-nome="frango queijo e tomate" data-esfiha="1">
+              <label>Frango com Queijo e Tomate</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="frango requeijao e tomate" data-esfiha="1">
+              <label>Frango com Requeijão e Tomate</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="frango milho e palmito" data-esfiha="1">
+              <label>Frango com Milho e Palmito</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="frango bacon e tomate" data-esfiha="1">
+              <label>Frango com Bacon e Tomate</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="frango cheddar e bacon" data-esfiha="1">
+              <label>Frango com Cheddar e Bacon</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="marguerita com requeijao" data-esfiha="1">
+              <label>Marguerita com Requeijão</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="napolitana com requeijao" data-esfiha="1">
+              <label>Napolitana com Requeijão</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+
+            <div class="item" data-preco="7"  data-nome="dois queijos temperados" data-esfiha="1">
+              <label>2 Queijos Temperados</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+          </div>
+
+        </div>
+
+                <!-- Catupiry -->
+        <div class="grupo">
+
+        <div class="topo-grupo">
+
+        <h2>Catupiry</h2>
+
+        </div>
+
+        <div
+        class="lista-itens"
+        id="catupiry">
+
+        <div class="item" data-preco="7.50" data-nome="carne e catupiry" data-esfiha="1">
+        <label>Carne</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="7.50" data-nome="frango e catupiry" data-esfiha="1">
+          <label>Frango</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+        </div>
+        
+        <div class="item" data-preco="7.50" data-nome="cremosa" data-esfiha="1">
+        <label>Cremosa</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+      </div>
+      
+      <div class="item" data-preco="7.5" data-nome="calabresa e catupiry" data-esfiha="1">
+        <label>Calabresa</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+      </div>
+      
+      <div class="item" data-preco="7.5" data-nome="bacon e catupiry" data-esfiha="1">
+        <label>Bacon</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+      </div>
+      
+      <div class="item" data-preco="7.5" data-nome="milho e Catupiry" data-esfiha="1">
+        <label>Milho</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+      </div>
+      
+      <div class="item" data-preco="7.5" data-nome="atum e catupiry" data-esfiha="1">
+      <label>Atum</label>
+      <input
+      type="number"
+      class="qtd-item"
+      min="0"
+      value="0">
+      </div>
+
+      <div class="item" data-preco="7.5" data-nome="brocolis e catupiry" data-esfiha="1">
+        <label>Brócolis</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+      </div>
+
+      <div class="item" data-preco="7.5" data-nome="palmito e catupiry" data-esfiha="1">
+      <label>Palmito</label>
+      <input
+      type="number"
+      class="qtd-item"
+      min="0"
+      value="0">
+      </div>
+      
+      <div class="item" data-preco="7.5" data-nome="dois queijos catupiry" data-esfiha="1">
+        <label>2 Queijos</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="7.5" data-nome="tres queijos catupiry" data-esfiha="1">
+        <label>3 Queijos com Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="7.5" data-nome="alho catupiry" data-esfiha="1">
+        <label>Alho com Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="napolitana com catupiry" data-esfiha="1">
+        <label>Napolitana com Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="marguerita com catupiry" data-esfiha="1">
+          <label>Marguerita com Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="calabresa tomate e catupiry" data-esfiha="1">
+       <label>Calabresa Tomate e Catupiry</label>
+       <input
+       type="number"
+       class="qtd-item"
+       min="0"
+       value="0">
+       </div>
+
+      <div class="item" data-preco="8" data-nome="calabresa bacon e catupiry" data-esfiha="1">
+       <label>Calabresa Bacon e Catupiry</label>
+       <input
+       type="number"
+       class="qtd-item"
+       min="0"
+       value="0">
+      </div>
+      
+      <div class="item" data-preco="8" data-nome="calabresa milho e catupiry" data-esfiha="1">
+       <label>Calabresa Milho e Catupiry</label>
+       <input
+       type="number"
+       class="qtd-item"
+       min="0"
+       value="0">
+       </div>
+       
+       <div class="item" data-preco="8" data-nome="frango bacon e catupiry" data-esfiha="1">
+       <label>Frango Bacon e Catupiry</label>
+       <input
+       type="number"
+       class="qtd-item"
+       min="0"
+       value="0">
+      </div>
+      
+      <div class="item" data-preco="8" data-nome="frango milho e catupiry" data-esfiha="1">
+        <label>Frango Milho e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+      </div>
+      
+      <div class="item" data-preco="8" data-nome="frango brocolis e catupiry" data-esfiha="1">
+      <label>Frango Brócolis e Catupiry</label>
+      <input
+      type="number"
+      class="qtd-item"
+      min="0"
+      value="0">
+      </div>
+
+       <div class="item" data-preco="8" data-nome="frango palmito e catupiry" data-esfiha="1">
+        <label>Frango Palmito e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="frango tomate e catupiry" data-esfiha="1">
+        <label>Frango Tomate e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="carne milho e catupiry" data-esfiha="1">
+        <label>Carne Milho e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="carne bacon e catupiry" data-esfiha="1">
+        <label>Carne Bacon e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="carne tomate e catupiry" data-esfiha="1">
+        <label>Carne Tomate e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="carne brocolis e catupiry" data-esfiha="1">
+        <label>Carne Brócolis e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8" data-nome="presunto queijo e catupiry" data-esfiha="1">
+        <label>Presunto Queijo e Catupiry</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+
+
+
+        </div>
+
+        </div>
+
+
+                <!-- Megas -->
+        <div class="grupo">
+
+        <div class="topo-grupo">
+
+        <h2>Mega</h2>
+
+        </div>
+
+        <div
+        class="lista-itens"
+        id="mega">
+
+        <div class="item" data-preco="8.50" data-nome="mega carne" data-esfiha="1">
+        <label>Carne</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.50" data-nome="mega frango" data-esfiha="1">
+        <label>Frango</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.50" data-nome="mega cremosa de frango" data-esfiha="1">
+        <label>Cremosa de Frango</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.50" data-nome="mega tomate" data-esfiha="1">
+        <label>Tomate</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.5" data-nome="mega calabresa" data-esfiha="1">
+        <label>Calabresa</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.5" data-nome="mega vegetariana" data-esfiha="1">
+        <label>Vegetariana</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.5" data-nome="mega brocolis" data-esfiha="1">
+        <label>Brócolis</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.5" data-nome="portuguesa com cebola" data-esfiha="1">
+        <label>Portuguesa</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        <div class="item" data-preco="8.5" data-nome="portuguesa sem cebola" data-esfiha="1">
+        <label>Portuguesa sem cebola</label>
+        <input
+        type="number"
+        class="qtd-item"
+        min="0"
+        value="0">
+        </div>
+
+        </div>
+
+        
+        
+      </div>
+                <!-- COMBOS -->
+          <div class="grupo">
+
+          <div class="topo-grupo">
+
+          <h2>Combos</h2>
+
+          </div>
+
+          <div
+          class="lista-itens"
+          id="Combos">
+
+          <div class="item" data-preco="54" data-nome="imbativel" data-esfiha="10">
+          <label>Imbativel</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="65" data-nome="pede e relaxa guarana ant 1l" data-esfiha="10">
+          <label>Pede e Relaxa</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="57" data-nome="realeza do queijo" data-esfiha="10">
+          <label>Realeza do Queijo</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="17.5" data-nome="lobo mal coca 200ml" data-esfiha="3">
+          <label>Lobo Mal</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="32" data-nome="queridinho da galera" data-esfiha="6">
+          <label>Queridinho da Galera</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="54" data-nome="acerta em cheio" data-esfiha="10">
+          <label>Acerta em Cheio</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="102" data-nome="explosao de sabor" data-esfiha="20">
+          <label>Explosão de Sabor</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="79" data-nome="tres sabores um amor" data-esfiha="15">
+          <label>3 Sabores 1 Amor</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          
+          </div>
+
+          </div>
+
+                  <!-- ESFIHAO -->
+          <div class="grupo">
+
+          <div class="topo-grupo">
+
+          <h2>Esfihão</h2>
+
+          </div>
+
+          <div
+          class="lista-itens"
+          id="esfihao">
+
+          <div class="item" data-preco="23.90" data-nome="esfihao marguerita" data-esfiha="1">
+          <label>Esfihão Marguerita</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="23.90" data-nome="esfihao napolitana" data-esfiha="1">
+          <label>Esfihão Napolitana</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="35.90" data-nome="esfihao carne" data-esfiha="1">
+          <label>Esfihão Carne</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="23.90" data-nome="esfihao dois queijos" data-esfiha="1">
+          <label>Esfihão 2 Queijos</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="35.90" data-nome="esfihao frango catupiry" data-esfiha="1">
+          <label>Esfihão Frango Catupiry</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="23.90" data-nome="esfihao presunto e queijo" data-esfiha="1">
+          <label>Esfihão Presunto e Queijo</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="27" data-nome="esfihao bacon" data-esfiha="1">
+          <label>Esfihão Bacon</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+          
+          <div class="item" data-preco="27" data-nome="esfihao brocolis" data-esfiha="1">
+          <label>Esfihão Brócolis</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="23.90" data-nome="esfihao calabresa" data-esfiha="1">
+          <label>Esfihao Calabresa</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="23.90" data-nome="esfihao calabresa com cebola" data-esfiha="1">
+          <label>Esfihao Calabresa com Cebola</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="35.90" data-nome="esfihao frango com palmito" data-esfiha="1">
+          <label>Esfihao Frango com Palmito</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          </div>
+
+          </div>
+
+
+        <!-- DOCES -->
+        <div class="grupo">
+
+          <div class="topo-grupo">
+
+            <h2>Doces</h2>
+
+          </div>
+
+          <div
+            class="lista-itens"
+            id="doces">
+
+            <div class="item" data-preco="7"  data-nome="brigadeiro" data-esfiha="1">
+              <label>Brigadeiro</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="7"  data-nome="romeu e julieta" data-esfiha="1">
+              <label>Romeu e Julieta</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="9.5"  data-nome="prestigio" data-esfiha="1">
+              <label>Prestígio</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+             <div class="item" data-preco="9.5"  data-nome="avela" data-esfiha="1">
+              <label>Creme de avelã</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="9.5"  data-nome="avela e granulado" data-esfiha="1">
+              <label>Creme de avelã com Granulado</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+             <div class="item" data-preco="9.5"  data-nome="doce de leite" data-esfiha="1">
+              <label>Doce de Leite</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="9.5"  data-nome="doce de leite e coco" data-esfiha="1">
+              <label>Doce de Leite com Coco</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="10"  data-nome="doce de leite e banana" data-esfiha="1">
+              <label>Doce de Leite e Banana</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="9.5"  data-nome="banana e queijo" data-esfiha="1">
+              <label>Banana com Queijo</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="9.5"  data-nome="brigadeiro e bis" data-esfiha="1">
+              <label>Brigadeiro e bis</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            
+            <div class="item" data-preco="10" data-nome="doce de leite e morango" data-esfiha="1">
+              <label>Doce de Leite e Morango</label>
+              <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+            </div>
+            
+            <div class="item" data-preco="10" data-nome="brigadeiro e morango" data-esfiha="1">
+              <label>Brigadeiro e Morango</label>
+              <input
+              type="number"
+              class="qtd-item"
+              min="0"
+                value="0">
+              </div>
+              
+            <div class="item" data-preco="10" data-nome="chocolate branco" data-esfiha="1">
+              <label>Chocolate Branco</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+              
+              <div class="item" data-preco="10" data-nome="brigadeiro e banana" data-esfiha="1">
+                <label>Brigadeiro e Banana</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="10.5" data-nome="avela e banana" data-esfiha="1">
+              <label>Creme de Avelã e Banana</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="11.9" data-nome="banana nevada" data-esfiha="1">
+              <label>Banana Nevada</label>
+              <input
+              type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="11.9" data-nome="morango nevado" data-esfiha="1">
+              <label>Morango Nevado</label>
+              <input
+              type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="11.9" data-nome="nevada com queijo" data-esfiha="1">
+              <label>Banana Nevada com Queijo</label>
+              <input
+              type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="10.5" data-nome="avela e morango" data-esfiha="1">
+              <label>Creme de Avela com Morango</label>
+              <input
+              type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="10.50" data-nome="pistache" data-esfiha="1">
+                <label>Pistache</label>
+                <input
+                  type="number"
+                  class="qtd-item"
+                  min="0"
+                  value="0">
+              </div>
+
+              <div class="item" data-preco="10.50" data-nome="chocolate branco c morango" data-esfiha="1">
+              <label>Chocolate Branco com Morango</label>
+              <input
+              type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+              </div>
+
+              <div class="item" data-preco="11.9"  data-nome="ouro branco c brigadeiro" data-esfiha="1">
+              <label>Ouro Branco com Brigadeiro</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="11.90"  data-nome="sonho de valsa c avela" data-esfiha="1">
+              <label>Sonho de Valsa com Avela</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+             <div class="item" data-preco="10.5"  data-nome="ovomaltine" data-esfiha="1">
+              <label>Ovomaltine</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="11.9"  data-nome="ovomaltine e morango" data-esfiha="1">
+              <label>Ovomaltine e Morango</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="11.9"  data-nome="ovomaltine e banana" data-esfiha="1">
+              <label>Ovomaltine e banana</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="11.9"  data-nome="brigadeiro e paçoca" data-esfiha="1">
+              <label>Brigadeiro com Paçoca</label>
+              <input
+                type="number"
+                class="qtd-item"
+                min="0"
+                value="0">
+            </div>
+
+            <div class="item" data-preco="26.50" data-nome="esfihao brigadeiro" data-esfiha="1">
+          <label>Esfihao Brigadeiro</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="42" data-nome="esfihao brigadeiro e morango" data-esfiha="1">
+          <label>Esfihao Brigadeiro e Morango</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="42" data-nome="esfihao banana nevada" data-esfiha="1">
+          <label>Esfihao Banana Nevada</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+
+          <div class="item" data-preco="42" data-nome="esfihao morango nevado" data-esfiha="1">
+          <label>Esfihao Morango Nevado</label>
+          <input
+          type="number"
+          class="qtd-item"
+          min="0"
+          value="0">
+          </div>
+                           
+            </div>
+
+        </div>
+
+      </div>
+      
+      <!-- BEBIDAS -->
+      <div class="grupo bebidas">
+
+        <div class="topo-grupo">
+
+          <h2>Bebidas</h2>
+          
+        </div>
+
+        <div
+          class="lista-itens bebidas-conteudo"
+          id="bebidas">
+
+          <div class="item" data-preco="8" data-nome="lata 350">
+            <label>Lata 350ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="13" data-nome="monster p">
+            <label>Monster P</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="17" data-nome="monster g">
+            <label>Monster G</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="10" data-nome="cha matte lata">
+            <label>Chá Matte Lata</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="9" data-nome="del valle limonada">
+            <label>Del Valle Limonada</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="16" data-nome="del valle mais 1l">
+            <label>Del Valle Mais 1l</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="6" data-nome="suco kapo">
+            <label>Suco Kapo</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="7" data-nome="Tonica 269ml">
+            <label>Tonica 269ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="9" data-nome="Tonica 350ml">
+            <label>Tonica 350ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="5" data-nome="pira kids">
+            <label>Pira Kids</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="5" data-nome="Agua de coco">
+            <label>Agua de coco</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="8.5" data-nome="Sprite Lemon">
+            <label>Sprite Lemon</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="8.5" data-nome="Guaranita 600ml">
+            <label>Guaranita 600ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="13" data-nome="Guaranita 2l">
+            <label>Guaranita 2l</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="4.5" data-nome="refrigerante 200ml">
+            <label>Refrigerante 200ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="8.5" data-nome="refri 7.5">
+            <label>Refrigerante 7.5$</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="10" data-nome="refrigerante 9">
+            <label>Refrigerante 9$</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="18" data-nome="refrigerante 2l">
+            <label>Refrigerante 2L</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="14" data-nome="coca 1l">
+            <label>Coca 1L</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+           <div class="item" data-preco="14" data-nome="coca zero 1l">
+            <label>Coca Zero 1L</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+           <div class="item" data-preco="11" data-nome="guarana antarctica 1l">
+            <label>Guaraná Antarctica 1L</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+           <div class="item" data-preco="5" data-nome="agua 500ml">
+            <label>Agua 500ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="5" data-nome="agua com gas 500ml">
+            <label>Agua com Gás 500ml</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="8" data-nome="suco del vale 1l garrafa">
+            <label>Suco Del Vale 1L Garrafa</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="16" data-nome="suco del vale 1l caixa">
+            <label>Suco Del Vale 1L Caixa</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="16" data-nome="guarana viton">
+            <label>Guaraná Viton</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          <div class="item" data-preco="13" data-nome="mantiqueira 2l">
+            <label>Mantiqueira 2l</label>
+            <input
+              type="number"
+              class="qtd-item"
+              min="0"
+              value="0">
+          </div>
+
+          
+
+        </div>
+
+      </div>
+
+      <!-- TOTAL -->
+      <div class="total">
+
+        <h3>
+          Total: R$
+          <span id="valor-total">
+            0,00
+          </span>
+        </h3>
+
+      </div>
+
+
+    </div>
+
+    <!-- PREVIEW -->
+<div class="preview">
+
+  <h2>Prévia da Comanda</h2>
+
+  <div id="preview-conteudo">
+    Nenhum item adicionado.
+  </div>
+
+    <!-- ENTREGADOR -->
+  <div id="entregador-info" class="hidden">
+    <div class="entregador-topo">
+      <strong>Entregador</strong>
+      <button type="button" id="editar-entregadores">Editar</button>
+    </div>
+    <div id="lista-entregadores" class="tipo-pedido"></div>
+  </div>
+
+
+  <!-- OBS -->
+      <div class="observacao">
+
+        <textarea
+          id="obs"
+          placeholder="OBS / Endereço"></textarea>
+
+      </div>
+
+  <!-- BOTÃO -->
+  <button id="imprimir">
+    <img src="bim.png" alt="Imprimir">
+  </button>
+
+</div>
+
+  </div> <!-- /layout -->
+  
+  <!-- Botão redondo do Fechamento da Noite (fixo, ao lado do botão de imprimir) -->
+  <button type="button" id="btn-abrir-fechamento" title="Entregas da Noite">
+    <img src="moto.png" alt="Entregas da Noite">
+  </button>
+
+  <!-- MODAL RETRÁTIL DE FECHAMENTO -->
+  <div id="modal-fechamento" class="modal-container hidden">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <h2 id="titulo-acerto">Acerto Motoboy</h2>
+        <button type="button" id="btn-fechar-modal" class="fechar-modal">&times;</button>
+      </div>
+  
+      <div class="modal-corpo">
+        <label class="campo-data">Dia: <input type="date" id="acerto-data"></label>
+        <div id="relatorio-motoboys">
+          <!-- O JS vai gerar o resumo de cada motoboy e plataforma aqui -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- FECHAR / CANCELAR PEDIDO -->
+  <div id="modal-aba" class="modal-container hidden">
+    <div class="modal-conteudo">
+      <div class="modal-topo"><h2>Encerrar pedido</h2></div>
+      <div class="modal-corpo">
+        <p class="modal-pergunta">O que fazer com <strong id="modal-aba-nome"></strong>?</p>
+        <p class="modal-dica">Nada é apagado: o pedido continua guardado e pode ser reaberto.</p>
+        <div class="modal-botoes">
+          <button type="button" id="modal-aba-fechar" class="btn-ok">Fechar pedido</button>
+          <button type="button" id="modal-aba-cancelar" class="btn-perigo">Cancelar pedido</button>
+          <button type="button" id="modal-aba-voltar">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PEDIDOS FECHADOS / CANCELADOS -->
+  <div id="modal-fechados" class="modal-container hidden">
+    <div class="modal-conteudo">
+      <div class="modal-topo">
+        <h2>Fechados / cancelados</h2>
+        <button type="button" id="btn-fechar-fechados" class="fechar-modal">&times;</button>
+      </div>
+      <div class="modal-corpo">
+        <label class="campo-data">Dia: <input type="date" id="fechados-data"></label>
+        <div id="lista-fechados"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.78.0/dist/umd/supabase.js"></script>
+  <script>window.supabase || document.write('<script src="https://unpkg.com/@supabase/supabase-js@2.78.0/dist/umd/supabase.js"><\/script>')</script>
+  <script src="config.js"></script>
+  <script src="sabores.js"></script>
+  <script src="script.js"></script>
+</body>
+
+
+</html>
